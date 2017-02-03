@@ -33,7 +33,7 @@ class Tracker(models.Model):
     end_date = models.DateField(null=True, blank=True)
     business_owner = models.ForeignKey(User, related_name='bus')
     division = models.ForeignKey(SBU)
-    proc_owner = models.ForeignKey(User, related_name='proc', limit_choices_to={'groups':1})
+    proc_owner = models.ForeignKey(User, related_name='proc', limit_choices_to={'groups': 2})
     category = models.ForeignKey(Category)
     contract_value = models.DecimalField(max_digits=10, decimal_places=2)
     theo = models.BooleanField(default=False)
