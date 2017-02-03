@@ -1,0 +1,8 @@
+{% extends "tracker/topbar.html" %}
+
+{% block content %}
+<div class="container-fluid text-center">
+  <a href="{% url 'reqs:cda_req' %}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> CDA Request</a>
+  <a href="{% url 'reqs:gartner_req' %}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Gartner Request</a>
+</div>
+{% endblock content %}

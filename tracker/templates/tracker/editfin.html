@@ -1,0 +1,13 @@
+{% extends "tracker/topbar.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+<form class="form" action="{% url 'tracker:editfinance' fin_id %}" method="post">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  {% buttons %}
+  <button name="submit" class="btn btn-primary">Submit</button>
+  {% endbuttons %}
+</form>
+
+{% endblock content %}

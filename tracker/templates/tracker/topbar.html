@@ -1,0 +1,76 @@
+{% load bootstrap3 %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SPAT</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed"
+              data-toggle="collapse" data-target="#navbar"
+              aria-expanded="false" aria-controls="navbar">
+          </button>
+          <a class="navbar-brand" href="{% url 'tracker:index' %}">SPAT</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+
+            <li class="dropdown">
+              <a href="{% url 'tracker:reqs' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quick Actions <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'reqs:cda_req' %}">New CDA Request</a></li>
+                <li><a href="{% url 'reqs:gartner_req' %}">New Gartner Request</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{% url 'tracker:newtracker' %}">New Activity</a></li>
+              </ul>
+            </li>
+
+            <li><a href="{% url 'reports:home' %}">Reports</a></li>
+            <li><a href="{% url 'tracker:closed' %}">Closed Projects</a></li>
+            {% if request.user.is_superuser %}
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+            {% endif %}
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+              <li>
+                <a>Hello, {{ user.first_name }}.</a></li>
+              <li><a href="{% url 'users:logout' %}">Log Out</a></li>
+            {% else %}
+              <li><a href="{% url 'users:register' %}">Register</a></li>
+              <li><a href="{% url 'users:login' %}">Log In</a></li>
+            {% endif %}
+          </ul>
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div>
+        {% block content %}{% endblock content %}
+      </div>
+
+
+    </div> <!-- /container -->
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{% extends "tracker/topbar.html" %}
+
+{% block content %}
+<div class="container-fluid">
+<h1 class="text-center">Do you really want to delete {{ t.init_name }}?  <small><p>You will never be able to recover it, but maybe after the heat death of the universe a new big bang will create a comparable universe where the exact pattern of bits that make up this record will be recreated.</p></small></h1>
+</div>
+<hr>
+<ul class="nav nav-pills nav-justified">
+<li><a class="btn btn-danger" href="{% url 'tracker:delete' t.id %}" role="button">Yes, I will never need this again!</a></li>
+<li>                              </li>
+<li><a class="btn btn-default" href="{% url 'tracker:detail' t.id %}" role="button">No! Save me!</a></li>
+</ul>
+{% endblock content %}
