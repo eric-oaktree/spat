@@ -125,6 +125,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = 'static'
+
 BOOTSTRAP3 = {
     'include_jquery' : True
     }
