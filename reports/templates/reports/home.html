@@ -5,15 +5,15 @@
   <h1>{{ all_average }}</h1>
   <h3>Average Pending Items Days Open</h3>
   <div>
-    <table class="table">
+    <table class="table table-bordered table-hover">
       <tr>
-        <th>Category</th>
-        <th>Average Days Outstanding</th>
+        <th class="text-center">Category</th>
+        <th class="text-center">Average Days Outstanding</th>
       </tr>
-      {% for c in cat_avg %}
+      {% for c, v in cat_avg.items %}
       <tr>
         <td>{{ c }}</td>
-        <td>{{ c.value }}</td>
+        <td>{{ v }}</td>
       </tr>
       {% empty %}
       <p>No data</p>
@@ -23,7 +23,7 @@
 </div>
 {% if request.user.is_superuser %}
 <hr>
-<div class="container-fluid text-center">
+<div class="container-fluid text-center table-hover">
   <a href="{% url 'reports:at_csv_dump' %}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>  AT CSV Dump</a>
 </div>
 {% endif %}
