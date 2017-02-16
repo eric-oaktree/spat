@@ -1,2 +1,2 @@
 web: gunicorn at3.wsgi --log-file -
-worker: celery --app=tasks.app beat -l info -S django
+worker: celery -A at3 beat -l info -S django
