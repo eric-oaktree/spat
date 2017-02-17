@@ -32,17 +32,23 @@
 </div>
 <hr>
 <div class="row">
-    <a href="{% url 'reports:graphos_test' %}"><div class="col-md-4"><button type="button" class="btn btn-default btn-block">G Test</button></div></a>
-    <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Test</button></div>
-    <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Test</button></div>
+    <a href="{% url 'reports:graphos_test' %}"><div class="col-md-4"><button type="button" class="btn btn-default btn-block">Activities by Type</button></div></a>
+    <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Activities by Owner</button></div>
+    <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Activities by Category</button></div>
 </div>
 <div class="row">
   <div class="col-md-12"><p></p></div>
 </div>
 <div class="row">
-    <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Test</button></div>
-    <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Test</button></div>
-    <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Test</button></div>
+    <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Workdays to Complete</button></div>
+    <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Activites by Month</button></div>
+    <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Activities by SBU</button></div>
+</div>
+<div class="row">
+  <div class="col-md-12"><p></p></div>
+</div>
+<div class="row">
+    <div class="col-md-12"><button type="button" class="btn btn-primary btn-block">Activity Grid</button></div>
 </div>
 {% if request.user.is_superuser %}
 <hr>
