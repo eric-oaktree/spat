@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from datetime import datetime, date
 from reports.models import Historical
 
+
 # Create your views here.
 
 def home(request):
