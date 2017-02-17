@@ -1,8 +1,17 @@
 {% extends "tracker/topbar.html" %}
 
 {% block content %}
+
 <div class="container-fluid text-center">
-  <h1>{{ all_average }}</h1>
+  <div class="text-center">
+    <center>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages:["gauge"]});
+    </script>
+    {{ chart.as_html }}
+  </center>
+  </div>
   <h3>Average Pending Items Days Open</h3>
   <div>
     <table class="table table-bordered table-hover">
@@ -23,7 +32,7 @@
 </div>
 <hr>
 <div class="row">
-    <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Test</button></div>
+    <a href="{% url 'reports:graphos_test' %}"><div class="col-md-4"><button type="button" class="btn btn-default btn-block">G Test</button></div></a>
     <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Test</button></div>
     <div class="col-md-4"><button type="button" class="btn btn-default btn-block">Test</button></div>
 </div>

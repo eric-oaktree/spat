@@ -4,7 +4,8 @@ from tracker.models import Tracker, Finance
 from django.core.urlresolvers import reverse
 from datetime import datetime, date
 from reports.models import Historical
-
+from graphos.sources.model import ModelDataSource, SimpleDataSource
+from graphos.renderers.gchart import LineChart, GaugeChart
 
 # Create your views here.
 
@@ -45,8 +46,12 @@ def home(request):
     for cat in cat_sum_dict.keys():
         avg = cat_sum_dict[cat] / cat_count_dict[cat]
         cat_avg[cat] = avg
+    data = [['Label', 'Value'], ['Days', int(all_average)]]
+    speed_data = SimpleDataSource(data=data)
+    speed_chart = GaugeChart(speed_data, width=400, height=200, options={
+        'greenFrom': 0, 'greenTo': 5, 'yellowFrom': 5, 'yellowTo': 7, 'redFrom': 7, 'redTo': 14, 'max': 14})
 
-    context = {'data': data, 'all_average': all_average, 'cat_avg': cat_avg}
+    context = {'data': data, 'all_average': all_average, 'cat_avg': cat_avg, 'chart': speed_chart}
     return render(request, 'reports/home.html', context)
 
 
@@ -61,3 +66,19 @@ def at_csv_dump(request):
     response = HttpResponse(csv_dump, content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="at_csv_dump.csv"'
     return response
+
+def activity_grid(request, user):
+    return render(request, 'reports/home.html')
+
+def graphos_test(request):
+    #q = Tracker.objects.all()
+    #data_source = ModelDataSource(q, fields = ['type', 'contract_value'])
+    data = [['Year', 'Sales'],
+            [2010, 150],
+            [2011, 200],
+            [2012, 300],
+            ]
+    data_source = SimpleDataSource(data=data)
+    chart = LineChart(data_source)
+    context = {'chart': chart}
+    return render(request, 'reports/g_test.html', context)

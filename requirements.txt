@@ -14,4 +14,5 @@ kombu==4.0.2
 openpyxl==2.4.2
 pytz==2016.10
 static3==0.7.0
+django-graphos==0.3.35
 psycopg2>=2.6.1
