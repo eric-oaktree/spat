@@ -82,3 +82,21 @@ def graphos_test(request):
     chart = LineChart(data_source)
     context = {'chart': chart}
     return render(request, 'reports/g_test.html', context)
+
+def act_by_type(request):
+    return render(request, 'reports/placeholder.html')
+
+def act_by_owner(request):
+    return render(request, 'reports/placeholder.html')
+
+def act_by_cat(request):
+    return render(request, 'reports/placeholder.html')
+
+def wrkdys_complete(request):
+    return render(request, 'reports/placeholder.html')
+
+def act_by_month(request):
+    return render(request, 'reports/placeholder.html')
+
+def act_by_sbu(request):
+    return render(request, 'reports/placeholder.html')
