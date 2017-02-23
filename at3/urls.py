@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^users/', include('users.urls', namespace='users')),
     url(r'^reqs/', include('reqs.urls', namespace='reqs')),
     url(r'^reports/', include('reports.urls', namespace='reports')),
+    url(r'^contract/', include('contract.urls', namespace='contract')),
     url(r'', include('tracker.urls', namespace='tracker'))
 ]
