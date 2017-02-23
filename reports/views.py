@@ -47,9 +47,13 @@ def home(request):
         avg = cat_sum_dict[cat] / cat_count_dict[cat]
         cat_avg[cat] = avg
     data = [['Label', 'Value'], ['Days', int(all_average)]]
+    if int(all_average) > 14:
+        gmax = int(all_average)
+    else:
+        gmax = 14
     speed_data = SimpleDataSource(data=data)
     speed_chart = GaugeChart(speed_data, width=400, height=200, options={
-        'greenFrom': 0, 'greenTo': 5, 'yellowFrom': 5, 'yellowTo': 7, 'redFrom': 7, 'redTo': 14, 'max': 14})
+        'greenFrom': 0, 'greenTo': 5, 'yellowFrom': 5, 'yellowTo': 7, 'redFrom': 7, 'redTo': gmax, 'max': gmax})
 
     context = {'data': data, 'all_average': all_average, 'cat_avg': cat_avg, 'chart': speed_chart}
     return render(request, 'reports/home.html', context)
