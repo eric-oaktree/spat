@@ -1,4 +1,29 @@
 {% extends "tracker/topbar.html" %}
 {% block content %}
+<div class="container-fluid">
+<h3>Recent Contracts</h3>
+</div>
+<div class="container-fluid">
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Effective Date</th>
+    <th>Supplier</th>
+  </tr>
+{% for c in con %}
+  <tr>
+    <td>{{ c.name }}</td>
+    <td>{{ c.eff_date }}</td>
+    <td>{{ c.supplier }}</td>
+  </tr>
+{% empty %}
+<tr>
+  <td>No Contracts</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
+
 
 {% endblock content %}
