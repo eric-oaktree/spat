@@ -137,4 +137,5 @@ BOOTSTRAP3 = {
     'include_jquery' : True
     }
 
-#dev celery settings
+if acc_keys.prod() == True:
+    pass
