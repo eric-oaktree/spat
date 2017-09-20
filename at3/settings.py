@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import acc_keys
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -22,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jnjl_%vr$dlajf#pep*&!p%%*lk6y$vkkl4$lz5due1-s7x2$a'
+SECRET_KEY = acc_keys.sec_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,8 +45,6 @@ INSTALLED_APPS = [
     'bootstrap3',
     'reqs',
     'reports',
-    'django_celery_results',
-    'django_celery_beat',
     'graphos',
     'contract'
 
@@ -139,34 +138,3 @@ BOOTSTRAP3 = {
     }
 
 #dev celery settings
-
-
-CELERY_BROKER_URL = ''
-
-#: Only add pickle to this list if your broker is secured
-#: from unwanted access (see userguide/security.html)
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_TASK_SERIALIZER = 'json'
-
-#heroku settings
-if os.getcwd() == '/app':
-    import dj_database_url
-    DATABASES = {
-    'default': dj_database_url.config(default='postgres://localhost')
-    }
-
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-    ALLOWED_HOSTS = ['*']
-
-    DEBUG = False
-
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = 'staticfiles'
-    STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-    )
-
-    #celery prod settings
-    CELERY_BROKER_URL = 'amqp://xrnvpzhv:bCA9DClCo6HKgeoW3abW-1ZsH2cj92Zd@cat.rmq.cloudamqp.com/xrnvpzhv'
