@@ -149,3 +149,6 @@ if acc_keys.prod() == True:
         'PASSWORD': acc_keys.db_user_pass(),
         'HOST': 'localhost',
         'PORT': '',    }}
+
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
