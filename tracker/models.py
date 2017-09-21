@@ -25,11 +25,11 @@ class Type(models.Model):
 
 class Tracker(models.Model):
     init_name = models.CharField(max_length=50)
-    supplier = models.CharField(max_length=50)
+    supplier = models.CharField(max_length=50, null=True, blank=True)
     type  = models.ForeignKey(Type)
     scope  = models.ForeignKey(Scope)
-    comments = models.TextField()
-    start_date = models.DateField()
+    comments = models.TextField(null=True, blank=True)
+    start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     business_owner = models.ForeignKey(User, related_name='bus')
     division = models.ForeignKey(SBU)

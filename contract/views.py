@@ -8,3 +8,9 @@ def recent_con(request):
     con = cons[0:19]
     context = {'con': con}
     return render(request, 'contract/list.html', context)
+
+def new_contract(request):
+    pass
+
+def contract_detail(request):
+    pass
