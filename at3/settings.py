@@ -138,4 +138,14 @@ BOOTSTRAP3 = {
     }
 
 if acc_keys.prod() == True:
-    pass
+    ALLOWED_HOSTS = ['*']
+    DEBUG = False
+
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': acc_keys.db(),
+        'USER': acc_keys.db_user(),
+        'PASSWORD': acc_keys.db_user_pass(),
+        'HOST': 'localhost',
+        'PORT': '',    }}
