@@ -6,6 +6,18 @@ import import_data
 # Create your views here.
 from .models import Environment, Service, Severity, Outage
 
+def outage_detail(request):
+    context = {}
+    return render(request, 'outage/outage_detail.html', context)
+
+
+
+
+
+
+
+
+
 def setup(request):
     prod_env = ('RMM', 'Continuity', 'HelpDesk', 'NOC', 'SOC')
     non_prod_env = ('Boston', 'Cranberry (non-HelpDesk)', 'Houston', 'Mumbai (non-NOC)', 'Pune (non-SOC)', 'London', 'Sydney')
