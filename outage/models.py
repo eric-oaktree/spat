@@ -25,7 +25,7 @@ class Outage(models.Model):
     service = models.ForeignKey(Service)
     sev = models.ForeignKey(Severity)
     began = models.DateTimeField()
-    detected = models.DateTimeField()
+    detected = models.DateTimeField(null=True, blank=True)
     end = models.DateTimeField(null=True, blank=True)
     tz = models.CharField(max_length=3)
     owner = models.TextField(null=True)
