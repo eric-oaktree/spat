@@ -3,3 +3,4 @@ __pycache__/
 *.sqlite3
 *.csv
 acc_keys.py
+import_data.py

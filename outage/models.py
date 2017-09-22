@@ -20,14 +20,16 @@ class Severity(models.Model):
         return self.name
 
 class Outage(models.Model):
-    description = models.TextField()
+    description = models.TextField(null=True)
     environ = models.ForeignKey(Environment)
     service = models.ForeignKey(Service)
     sev = models.ForeignKey(Severity)
-    began = models.DateTimeField()
+    began = models.DateTimeField(null=True)
     detected = models.DateTimeField(null=True, blank=True)
     end = models.DateTimeField(null=True, blank=True)
     tz = models.CharField(max_length=3)
     owner = models.TextField(null=True)
-    rca = models.TextField()
+    rca = models.TextField(null=True)
     status = models.TextField(null=True, blank=True)
+    def __str__(self):
+        return self.description
