@@ -43,6 +43,7 @@
             </li>
 
             <li><a href="{% url 'reports:home' %}">Reports</a></li>
+            <li><a href="{% url 'contract:recent_con' %}">Contracts</a></li>
             <li><a href="{% url 'tracker:closed' %}">Closed Projects</a></li>
             {% if request.user.is_superuser %}
             <li><a href="{% url 'admin:index' %}">Admin</a></li>

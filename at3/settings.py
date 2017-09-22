@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'reqs',
     'reports',
     'graphos',
-    'contract'
+    'contract',
+    'outage',
 
 
 ]

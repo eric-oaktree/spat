@@ -1,0 +1,23 @@
+{% extends "tracker/topbar.html" %}
+
+{% block content %}
+
+<h1>Outages:</h1>
+<table class="table">
+  <tr>
+    <th>Description</th>
+    <th>Severity</th>
+  </tr>
+  {% for o in outage %}
+  <tr>
+    <td>{{o.description}}</td>
+    <td>{{o.sev.name}}</td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td>No Outages</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock content %}
