@@ -28,4 +28,4 @@ def setup(request):
 def dash(request):
     o = Outage.objects.all()
     context = {'outage': o}
-    return render(requet, 'outage/dash.html')
+    return render(request, 'outage/dash.html')
