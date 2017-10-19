@@ -5,15 +5,15 @@
 <h1>{{out.description}}</h1>
 <h1><small>{{out.status}}</small></h1>
 
-Environment: {{out.environ.name}}
-Production?: {{out.environ.prod}}
-Service: {{out.service.name}}
-Severity: {{out.severity.name}} - {{out.severity.value}}
-Began: {{out.began}}
-Detected: {{out.detected}}
-End: {{out.end}}
-Timezone: {{out.tz}}
-Owner: {{out.owner}}
-RCA: {{out.rca}}
+<p>Environment: {{out.environ.name}}</p>
+<p>Production?: {{out.environ.prod}}</p>
+<p>Service: {{out.service.name}}</p>
+<p>Severity: {{out.severity.name}} - {{out.severity.value}}</p>
+<p>Began: {{out.began}}</p>
+<p>Detected: {{out.detected}}</p>
+<p>End: {{out.end}}</p>
+<p>Timezone: {{out.tz}}</p>
+<p>Owner: {{out.owner}}</p>
+<p>RCA: {{out.rca}}</p>
 
 {% endblock content %}
