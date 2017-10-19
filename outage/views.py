@@ -51,6 +51,6 @@ def load_x(request):
     return HttpResponseRedirect(reverse('outage:dash'))
 
 def dash(request):
-    o = Outage.objects.all()
+    o = Outage.objects.all.order_by('-began')
     context = {'outage': o}
     return render(request, 'outage/dash.html', context)
