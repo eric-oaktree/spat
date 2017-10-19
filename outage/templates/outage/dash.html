@@ -10,7 +10,7 @@
   </tr>
   {% for o in outage %}
   <tr>
-    <a href="{% url 'outage:outage_detail' out.id %}"><td>{{o.description}}</td></a>
+    <a href="{% url 'outage:outage_detail' o.id %}"><td>{{o.description}}</td></a>
     <td>{{o.sev.name}}</td>
   </tr>
   {% empty %}
