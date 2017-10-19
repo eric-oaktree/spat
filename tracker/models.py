@@ -72,3 +72,16 @@ class Finance(models.Model):
     nature = models.TextField()
     def __str__(self):
         return str(self.record) + ' ' + str(self.contract_start)
+
+class TaskStatus(models.Model):
+    name = models.TextField()
+    def __str__(self):
+        return self.name
+
+class Task(models.Model):
+    record = models.ForeignKey(Tracker)
+    description = models.TextField()
+    due = models.DateField(null=True, blank=True)
+    status = models.ForeignKey(TaskStatus)
+    def __str__(self):
+        return self.record.name + " " + self.description

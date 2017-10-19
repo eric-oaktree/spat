@@ -6,9 +6,10 @@ import import_data
 # Create your views here.
 from .models import Environment, Service, Severity, Outage
 
-def outage_detail(request):
-    context = {}
-    return render(request, 'outage/outage_detail.html', context)
+def outage_detail(request, o_id):
+    out = Outage.objects.get(id=o_id)
+    context = {out}
+    return render(request, 'outage/out_detail.html', context)
 
 
 

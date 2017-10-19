@@ -1,0 +1,19 @@
+{% extends "tracker/topbar.html" %}
+
+{% block content %}
+
+<h1>{{out.description}}</h1>
+<h1><small>{{out.status}}</small></h1>
+
+Environment: {{out.environ.name}}
+Production?: {{out.environ.prod}}
+Service: {{out.service.name}}
+Severity: {{out.severity.name}} - {{out.severity.value}}
+Began: {{out.began}}
+Detected: {{out.detected}}
+End: {{out.end}}
+Timezone: {{out.tz}}
+Owner: {{out.owner}}
+RCA: {{out.rca}}
+
+{% endblock content %}
