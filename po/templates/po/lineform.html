@@ -1,0 +1,17 @@
+{% extends "tracker/topbar.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+{% if mode == 'add' %}
+<form class="form" action="{% url 'po:add_line' po_id %}" method="post">
+{% endif %}
+{% if mode == 'edit' %}
+<form class="form" action="{% url 'po:edit_line' ln_id %}" method="post">
+{% endif %}
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  {% buttons %}
+  <button name="submit" class="btn btn-primary">Submit</button>
+  {% endbuttons %}
+</form>
+{% endblock content %}

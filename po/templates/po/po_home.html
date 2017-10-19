@@ -1,0 +1,43 @@
+{% extends "tracker/topbar.html" %}
+{% load humanize %}
+
+{% block content %}
+
+<h1>PO Management</h1>
+<p> </p>
+<hr>
+<ul class="nav nav-pills">
+  <li><a href="{% url 'po:add_po' %}" class="btn btn-default">Add PO <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></li>
+</ul>
+<hr>
+<h3>Recent POs</h3>
+<table class="table">
+  <tr>
+    <th>PO</th>
+    <th>Vendor</th>
+    <th>Created</th>
+    <th>Amount</th>
+    <th></th>
+  </tr>
+  {% for po in pos %}
+  <tr>
+    <td><a href="{% url 'po:po_detail' po.id %}">{{po.num}}</a></td>
+    <td><a href="{% url 'vendor:vendor_detail' po.supplier.id %}">{{po.supplier.name}}</a></td>
+    <td>{{po.created}}</td>
+    <td>${{po.total|floatformat:"2"|intcomma}}</td>
+    <td>
+      <a href="{% url 'po:edit_po' po.id %}" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td>You have not set up any POs!</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock content %}

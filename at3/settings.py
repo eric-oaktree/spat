@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'graphos',
     'contract',
     'outage',
+    'po',
 
 
 ]

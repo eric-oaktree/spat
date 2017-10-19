@@ -1,4 +1,4 @@
-"""at3 URL Configuration
+"""collywop URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -16,13 +16,15 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from . import views
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^users/', include('users.urls', namespace='users')),
-    url(r'^reqs/', include('reqs.urls', namespace='reqs')),
-    url(r'^reports/', include('reports.urls', namespace='reports')),
-    url(r'^contract/', include('contract.urls', namespace='contract')),
-    url(r'^outage/', include('outage.urls', namespace='outage')),
-    url(r'^po/', include('po.urls', namespace='po')),
-    url(r'', include('tracker.urls', namespace='tracker')),
+    url(r'^add-po/$', views.add_po, name='add_po'),
+    url(r'^edit-po/(?P<po_id>\d+)/$', views.edit_po, name='edit_po'),
+    url(r'^al/(?P<po_id>\d+)/$', views.add_line, name='add_line'),
+    url(r'^el/(?P<ln_id>\d+)/$', views.edit_line, name='edit_line'),
+    url(r'^(?P<po_id>\d+)/$', views.po_detail, name='po_detail'),
+    url(r'^by-vendor/(?P<v_id>\d+)/$', views.po_by_vendor, name='po_by_vendor'),
+    url(r'^add-to-vendor/(?P<v_id>\d+)/$', views.add_po_to_vendor, name='add_po_to_vendor'),
+    url(r'^$', views.po_home, name='po_home'),
 ]
