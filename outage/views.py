@@ -8,7 +8,7 @@ from .models import Environment, Service, Severity, Outage
 
 def outage_detail(request, o_id):
     out = Outage.objects.get(id=o_id)
-    context = {out}
+    context = {'out': out}
     return render(request, 'outage/out_detail.html', context)
 
 
