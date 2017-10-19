@@ -5,15 +5,21 @@
 <h1>{{out.description}}</h1>
 <h1><small>{{out.status}}</small></h1>
 
-<p>Environment: {{out.environ.name}}</p>
-<p>Production?: {{out.environ.prod}}</p>
-<p>Service: {{out.service.name}}</p>
-<p>Severity: {{out.sev.name}} - {{out.sev.value}}</p>
-<p>Began: {{out.began}}</p>
-<p>Detected: {{out.detected}}</p>
-<p>End: {{out.end}}</p>
-<p>Timezone: {{out.tz}}</p>
-<p>Owner: {{out.owner}}</p>
-<p>RCA: {{out.rca}}</p>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-3">Environment: {{out.environ.name}}</div>
+<div class="col-md-3">Production?: {{out.environ.prod}}</div>
+<div class="col-md-3">Service: {{out.service.name}}</div>
+<div class="col-md-3">Severity: {{out.sev.name}} - {{out.sev.value}}</div>
+<div class="row">
+<div class="col-md-3">Began: {{out.began}}</div>
+<div class="col-md-3">Detected: {{out.detected}}</div>
+<div class="col-md-3">End: {{out.end}}</div>
+<div class="col-md-3">Timezone: {{out.tz}}</div>
+<div class="row">
+<div class="col-md-6">Owner: {{out.owner}}</div>
+<div class="col-md-6">RCA: {{out.rca}}</div>
+</div>
+</div>
 
 {% endblock content %}
