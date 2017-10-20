@@ -3,6 +3,10 @@
 {% block content %}
 
 <h1>Outages:</h1>
+<hr>
+<ul class="nav nav-pills">
+  <li><a href="{% url 'outage:new_outage' %}" class="btn btn-default">Add Outage <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></li>
+</ul>
 <table class="table">
   <tr>
     <th>Description</th>
