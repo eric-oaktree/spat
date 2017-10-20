@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Environment(models.Model):
@@ -29,6 +29,7 @@ class Outage(models.Model):
     end = models.DateTimeField(null=True, blank=True)
     tz = models.CharField(max_length=3)
     owner = models.TextField(null=True)
+    auth_owner = models.ForeignKey(User, related_name='owner', null=true)
     rca = models.TextField(null=True)
     status = models.TextField(null=True, blank=True)
     def __str__(self):

@@ -63,7 +63,7 @@ def new_outage(request):
         date = time.strftime("%Y-%m-%d")
         now_test = time.now()
         u = request.user
-        form = OutageForm(initial = {'detected': now_test, 'owner': u})
+        form = OutageForm(initial = {'detected': now_test, 'auth_owner': u})
     else:
         form = OutageForm(data=request.POST)
         if form.is_valid():
