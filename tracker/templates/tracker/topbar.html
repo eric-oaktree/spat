@@ -35,10 +35,15 @@
             <li class="dropdown">
               <a href="{% url 'tracker:reqs' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quick Actions <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="{% url 'reqs:cda_req' %}">New CDA Request</a></li>
-                <li><a href="{% url 'reqs:gartner_req' %}">New Gartner Request</a></li>
+                <li><a href="{% url 'vendor:add_vendor' %}">New Vendor</a></li>
+                <li><a href="">New Quote</a></li>
+                <li><a href="{% url 'po:add_po' %}">New PO</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="{% url 'tracker:newtracker' %}">New Activity</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{% url 'outage:new_outage' %}">New Outage</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="">New Contract</a></li>
               </ul>
             </li>
 

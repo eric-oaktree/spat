@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 import import_data
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from .models import Environment, Service, Severity, Outage
+from .forms import OutageForm
 
 def outage_detail(request, o_id):
     out = Outage.objects.get(id=o_id)
@@ -54,3 +56,32 @@ def dash(request):
     o = Outage.objects.order_by('-began')
     context = {'outage': o}
     return render(request, 'outage/dash.html', context)
+
+@login_required(login_url='/users/login/')
+def new_outage(request):
+    if request.method != 'POST':
+        date = time.strftime("%Y-%m-%d")
+        now_test = time.now()
+        u = request.user
+        form = OutageForm(initial = {'detected': now_test, 'owner': u})
+    else:
+        form = OutageForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('outage:dash'))
+    context = {'form': form}
+    return render(request, 'outage/new_outage.html', context)
+
+@login_required(login_url='/users/login/')
+def edit_outage(request, o_id):
+    if request.method != 'POST':
+        track = Outage.objects.get(id=o_id)
+        form = OutageForm(instance=track)
+    else:
+        track = Outage.objects.get(id=o_id)
+        form = OutageForm(request.POST, instance=track)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('outage:outage_detail', args=[o_id]))
+    context = {'form' : form, 'o_id' : o_id}
+    return render(request, 'tracker/edit_outage.html', context)
