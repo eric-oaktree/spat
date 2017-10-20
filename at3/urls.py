@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^contract/', include('contract.urls', namespace='contract')),
     url(r'^outage/', include('outage.urls', namespace='outage')),
     url(r'^po/', include('po.urls', namespace='po')),
+    url(r'^vendor/', include('vendor.urls', namespace='vendor')),
     url(r'', include('tracker.urls', namespace='tracker')),
 ]

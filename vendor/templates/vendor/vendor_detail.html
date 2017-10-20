@@ -1,0 +1,71 @@
+{% extends "tracker/topbar.html" %}
+{% load humanize %}
+
+{% block content %}
+<div class="container-fluid">
+
+  <h1>{{v.name}}</h1>
+  <h4><small><a href="{{ v.portal }}">{{ v.portal }}</a></small></h4>
+  <h4><small>Created: {{ v.created }} Modified: {{ v.modified }} Viewed: {{ v.viewed }}</small></h4>
+  <hr>
+  <h4><small>{{v.desc}}</small></h4>
+  <hr>
+  <ul class="nav nav-pills">
+    <li role="presentation"><a href="{% url 'vendor:edit_vendor' v.id %}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</a></li>
+    <li role="presentation"><a href="" class="btn btn-default" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Find Quotes</a></li>
+    <li role="presentation"><a href="{% url 'po:po_by_vendor' v.id %}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Find PO's</a></li>
+  </ul>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Contacts:</h3>
+      <a href="{% url 'vendor:add_contact' v.id %}" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Contact</a>
+      <p></p>
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+          </tr>
+        {% for con in c %}
+          <tr>
+            <td>{{ con.first }} {{ con.last }}</td>
+            <td>{{ con.phone }}</td>
+            <td><a href="mailto:{{ con.email }}">{{ con.email }}</a></td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td>No Contacts</td>
+          </tr>
+        {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-6">
+      <h3>Recent PO's:</h3>
+      <a href="{% url 'po:add_po_to_vendor' v.id %}" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add PO</a>
+      <a href="{% url 'po:po_by_vendor' v.id %}" class="btn btn-default"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Go to PO's</a>
+      <p></p>
+      <table class="table">
+        <tr>
+          <th>PO #</th>
+          <th>Issued</th>
+          <th>Total</th>
+          <th>Status</th>
+        </tr>
+        {% for p in po %}
+        <tr>
+          <td>{{ p.num }}</td>
+          <td>{{ p.issued }}</td>
+          <td>${{ p.total|floatformat:"2"|intcomma }}</td>
+          <td>{{ p.status }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td>No PO's</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

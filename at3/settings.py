@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'contract',
     'outage',
     'po',
+    'vendor',
 
 
 ]

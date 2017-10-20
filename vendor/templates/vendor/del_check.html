@@ -1,0 +1,18 @@
+{% extends "tracker/topbar.html" %}
+
+{% block content %}
+
+<div class="container-fluid text-center">
+  <h2>Do you really wish to delete {{ven.name}}?</h2>
+  <h3>This cannot be undone!</h3>
+  <p><a href=""></a></p>
+  <div class="row">
+    <div class="col-md-6">
+      <a href="{% url 'vendor:vendor_home' %}" class="btn btn-default">Back to Safety!</a>
+    </div>
+    <div class="col-md-6">
+      <a href="{% url 'vendor:delete_vendor' v_id %}" class="btn btn-danger">Delete Forever</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}
