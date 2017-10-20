@@ -7,7 +7,7 @@
   <li> </li>
   <li> </li>
   <li> </li>
-  <li><a class="btn btn-default" href="{% url 'outage:edit_outage' t.id %}" role="button">Edit Outage <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+  <li><a class="btn btn-default" href="{% url 'outage:edit_outage' out.id %}" role="button">Edit Outage <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
   {% if request.user.is_superuser or request.user == t.proc_owner or request.user == t.business_owner %}
   <li><a class="btn btn-danger" href="" role="button">Delete Record <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></li>
   {% endif %}
@@ -29,19 +29,19 @@
         <div class="col-md-6 well well-sm"><h4><strong>Began: </strong>{{out.began}}</h4></div>
         <div class="col-md-6 well well-sm"><h4><strong>Ended: </strong>{{out.end}}</h4></div>
         <div class="col-md-6 well well-sm"><h4><strong>Detected: </strong>{{out.detected}}</h4></div>
-        <div class="col-md-6 well well-sm"><h4><strong>Procurement Owner: </strong>{{out.owner}}</h4></div>
+        <div class="col-md-6 well well-sm"><h4><strong>Owner: </strong>{{out.owner}}</h4></div>
     </div>
 
   <hr>
     <div class="row well text-center">
       <div class="row">
-        <div class="col-md-4"><strong>Environment: </strong>{{out.environ.name}}</div>
-        <div class="col-md-4"><strong>Production?: </strong>{{out.environ.prod}}</div>
+        <div class="col-md-6"><strong>Environment: </strong>{{out.environ.name}}</div>
+        <div class="col-md-6"><strong>Production?: </strong>{{out.environ.prod}}</div>
       </div>
       <hr>
       <div class="row">
-        <div class="col-md-4"><strong>Service: </strong>{{out.service.name}}</div>
-        <div class="col-md-4"><strong>Severity: </strong>{{out.sev.value}}</div>
+        <div class="col-md-6"><strong>Service: </strong>{{out.service.name}}</div>
+        <div class="col-md-6"><strong>Severity: </strong>{{out.sev.value}}</div>
       </div>
     </div>
     <div class="row">
