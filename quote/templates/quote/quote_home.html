@@ -1,0 +1,31 @@
+{% extends "tracker/topbar.html" %}
+
+{% block content %}
+
+<h1>Quote Management</h1>
+
+<p>buttons</p>
+
+<table>
+  <tr>
+    <th>Project</th>
+    <th>Vendor</th>
+    <th>Created</th>
+    <th>Amount</th>
+  </tr>
+  {% for qo in q %}
+  <tr>
+    <td><a href="{% url 'quote:quote_detail' qo.id %}">{{ qo.project.name }}</a></td>
+    <td><a href="{% url 'vendor:vendor_detail' po.supplier.id %}">{{qo.supplier.name}}</a></td>
+    <td>{{qo.created}}</td>
+    <td>{{qo.total}}</td>
+    <td>Edit Button</td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td>You have entered any quotes!</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock content %}

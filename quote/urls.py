@@ -1,4 +1,4 @@
-"""at3 URL Configuration
+"""collywop URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -16,15 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from . import views
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^users/', include('users.urls', namespace='users')),
-    url(r'^reqs/', include('reqs.urls', namespace='reqs')),
-    url(r'^reports/', include('reports.urls', namespace='reports')),
-    url(r'^contract/', include('contract.urls', namespace='contract')),
-    url(r'^outage/', include('outage.urls', namespace='outage')),
-    url(r'^po/', include('po.urls', namespace='po')),
-    url(r'^quote/', include('quote.urls', namespace='quote')),
-    url(r'^vendor/', include('vendor.urls', namespace='vendor')),
-    url(r'', include('tracker.urls', namespace='tracker')),
+    url(r'^q/(?P<q_id>\d+)/$', views.quotes_detail, name='quotes_detail'),
+    url(r'^p/(?P<p_id>\d+)/$', views.project_detail, name='project_detail'),
+    url(r'^p/$', views.project_home, name='project'),
+    url(r'^$', views.quotes_home, name='quotes_home'),
+
 ]

@@ -1,0 +1,56 @@
+{% extends "tracker/topbar.html" %}
+
+{% block content %}
+
+<h1>{{q.supplier.name}} {{ q.quote_num }}</h1>
+<h1><small><a href='{% url "quote:project_detail" q.project.id %}'>{{ q.project.name }}</a></small></h1>
+<h4><small>Created: {{ q.created }} Modified: {{ q.modified }} Viewed: {{ q.viewed }}</small></h4>
+
+<div class="row">
+{% if q.tax == True %}
+  <div class="col-md-4">
+    Tax: {{  q.tax_amt }}
+  </div>
+{% endif %}
+  <div class="col-md-4">
+    Subtotal: {{ q.subtotal }}
+  </div>
+  <div class="col-md-4">
+    Total: {{ q.total }}
+  </div>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Description</th>
+    <th>Item Number</th>
+    <th>Publisher</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Quantity</th>
+    <th>Unit</th>
+    <th>Unit Cost</th>
+    <th>Line Total</th>
+    <th></th>
+  </tr>
+  {% for ln in l %}
+  <tr>
+    <td>{{ ln.desc }}</td>
+    <td>{{ ln.item_num }}</td>
+    <td>{{ ln.publisher.name }}</td>
+    <td>{{ ln.start_date }}</td>
+    <td>{{ ln.exp_date }}</td>
+    <td>{{ ln.qty }}</td>
+    <td>{{ ln.uom }}</td>
+    <td>{{ ln.unit_cost }}</td>
+    <td>{{ ln.line_total }}</td>
+    <td>Edit</td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td>No Lines in Quote</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock content %}

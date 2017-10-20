@@ -8,7 +8,6 @@ from django.core.urlresolvers import reverse
 from .models import Supplier, Publisher, Contact
 from .forms import VendorForm, PublisherForm, ContactForm
 from po.models import PO, Line_PO
-from invoice.models import Invoice
 
 def vendor_home(request):
     v = Supplier.objects.order_by('-viewed')
