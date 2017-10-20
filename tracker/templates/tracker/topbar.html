@@ -35,17 +35,33 @@
             <li class="dropdown">
               <a href="{% url 'tracker:reqs' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quick Actions <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="{% url 'reqs:cda_req' %}">New CDA Request</a></li>
-                <li><a href="{% url 'reqs:gartner_req' %}">New Gartner Request</a></li>
+                <li><a href="{% url 'vendor:add_vendor' %}">New Vendor</a></li>
+                <li class="disabled"><a href="">New Quote</a></li>
+                <li><a href="{% url 'po:add_po' %}">New PO</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="{% url 'tracker:newtracker' %}">New Activity</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{% url 'outage:new_outage' %}">New Outage</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="">New Contract</a></li>
               </ul>
             </li>
 
-            <li><a href="{% url 'reports:home' %}">Reports</a></li>
+            <li class="dropdown">
+              <a href="{% url 'po:po_home' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Procurement<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'vendor:vendor_home' %}">Vendors</a></li>
+                <li class="disabled"><a href="">Quotes</a></li>
+                <li><a href="{% url 'po:po_home' %}">Purchase Orders</a></li>
+              </ul>
+            </li>
+
+
+            <li class="disabled"><a href="{% url 'reports:home' %}">Reports</a></li>
             <li><a href="{% url 'contract:recent_con' %}">Contracts</a></li>
             <li><a href="{% url 'outage:dash' %}">Outages</a></li>
-            <li><a href="{% url 'po:po_home' %}">Procurement</a></li>
+
+
             <li><a href="{% url 'tracker:closed' %}">Closed Projects</a></li>
             {% if request.user.is_superuser %}
             <li><a href="{% url 'admin:index' %}">Admin</a></li>
