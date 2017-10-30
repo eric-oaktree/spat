@@ -28,7 +28,7 @@ class Outage(models.Model):
     detected = models.DateTimeField(null=True, blank=True)
     end = models.DateTimeField(null=True, blank=True)
     tz = models.CharField(max_length=3)
-    owner = models.TextField(null=True)
+    owner = models.TextField(null=True, blank=True)
     auth_owner = models.ForeignKey(User, related_name='owner', null=True)
     rca = models.TextField(null=True)
     status = models.TextField(null=True, blank=True)

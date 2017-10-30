@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 import import_data
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+import time
 
 # Create your views here.
 from .models import Environment, Service, Severity, Outage
@@ -60,8 +62,8 @@ def dash(request):
 @login_required(login_url='/users/login/')
 def new_outage(request):
     if request.method != 'POST':
-        date = time.strftime("%Y-%m-%d")
-        now_test = time.now()
+        date =  time.strftime("%Y-%m-%d")
+        now_test = timezone.now()
         u = request.user
         form = OutageForm(initial = {'detected': now_test, 'auth_owner': u})
     else:
