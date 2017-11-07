@@ -87,3 +87,15 @@ def edit_outage(request, o_id):
             return HttpResponseRedirect(reverse('outage:outage_detail', args=[o_id]))
     context = {'form' : form, 'o_id' : o_id}
     return render(request, 'tracker/edit_outage.html', context)
+
+def out_csv_dump(request):
+    track = Outage.objects.all()
+    csv_dump = open('csv_dump.csv', 'w')
+    csv_dump.write('Description,Environment,Service,Severity,Began,Detected,Ended,TimeZone,RCA\n')
+    for t in track:
+        csv_dump.write(t.description+','+t.environ.name+','+t.service.name+','+str(t.sev.value)+','+str(t.began)+','+str(t.detected)+','+str(t.end)+','+t.tz+','+t.rca+'\n')
+    csv_dump.close()
+    csv_dump = open('csv_dump.csv', 'r')
+    response = HttpResponse(csv_dump, content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="at_csv_dump.csv"'
+    return response
