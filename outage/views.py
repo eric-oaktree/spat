@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 import import_data
 from django.contrib.auth.decorators import login_required
@@ -91,11 +91,18 @@ def edit_outage(request, o_id):
 def out_csv_dump(request):
     track = Outage.objects.all()
     csv_dump = open('csv_dump.csv', 'w')
-    csv_dump.write('Description,Environment,Service,Severity,Began,Detected,Ended,TimeZone,RCA\n')
+    csv_dump.write('Description,Environment,Service,Severity,Began,Ended,TimeZone\n')
     for t in track:
-        csv_dump.write(t.description+','+t.environ.name+','+t.service.name+','+str(t.sev.value)+','+str(t.began)+','+str(t.detected)+','+str(t.end)+','+t.tz+','+t.rca+'\n')
+        csv_dump.write(t.description+','
+                    +t.environ.name+','
+                    +t.service.name+','
+                    +str(t.sev.value)+','
+                    +t.began.strftime('%m/%d/%Y %H:%M:%S')+','
+                    +t.end.strftime('%m/%d/%Y %H:%M:%S')+','
+                    +t.tz+','
+                    +'\n')
     csv_dump.close()
     csv_dump = open('csv_dump.csv', 'r')
     response = HttpResponse(csv_dump, content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="at_csv_dump.csv"'
+    response['Content-Disposition'] = 'attachment; filename="out_csv_dump.csv"'
     return response
