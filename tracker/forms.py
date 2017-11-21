@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Tracker, Finance
+from .models import Tracker, Finance, Task, TaskStatus
 
 class TrackerForm(forms.ModelForm):
     class Meta:
@@ -17,3 +17,8 @@ class FinanceForm(forms.ModelForm):
                   'savings_start', 'savings_end', 'budget_type', 'cs_type', 'confidence', 'nature']
         labels = {'record': 'Tracker', 'term_mo': 'Term in Months', 'yr_savings': '12 mo Savings', 'spend_cur_fy': 'Current FY Spend', 'spend_prev_fy': 'Previous FY Spend', 'contract_start': 'Contract Start Date (YYYY-MM-DD)', 'contract_end': 'Contract End Date (YYYY-MM-DD)',
                   'savings_start': 'Savings Start Date (YYYY-MM-DD)', 'savings_end': 'Savings End Date (YYYY-MM-DD)', 'budget_type': 'Budget Type', 'cs_type': 'Cost Savings Type', 'confidence': 'Confidence Level', 'nature': 'Nature of Deal'}
+
+class TaskForm(forms.Form):
+    description = forms.CharField(max_length = 255, strip=True)
+    due = forms.DateField()
+    status = forms.ModelChoiceField(queryset=TaskStatus.objects.all())

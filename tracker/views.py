@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Tracker, Finance
+from .models import Tracker, Finance, Task, TaskStatus
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from .forms import TrackerForm, FinanceForm
+from .forms import TrackerForm, FinanceForm, TaskForm
 import time
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -24,7 +24,7 @@ def index(request):
                 warn = warn + 1
             rec_list[r] = f
 
-        if warn > 1:
+        if warn > 0:
             warning = 'finance'
 
         proj = Tracker.objects.filter(business_owner=request.user, end_date__isnull=True).order_by('start_date')
@@ -60,6 +60,17 @@ def reqs(request):
     return render(request, 'tracker/reqs.html')
 
 def detail(request, track_id):
+    #inline form handling
+    if request.method == 'POST':
+        form = TaskForm(data=request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            obj = Task(record=Tracker.objects.get(id=track_id), description=data['description'], due=data['due'], status=data['status'])
+            obj.save()
+    else:
+        form = TaskForm(initial={'status': TaskStatus.objects.get(name='Open')})
+
+    #content
     t = Tracker.objects.get(id=track_id)
     try:
         f = Finance.objects.get(record=t)
@@ -69,7 +80,8 @@ def detail(request, track_id):
         fin = 'd'
     else:
         fin = 'n'
-    context = {'t':t, 'f':f, 'fin':fin}
+    tasks = Task.objects.filter(record=track_id)
+    context = {'t':t, 'f':f, 'fin':fin, 'tasks': tasks, 'form':form}
     return render(request, 'tracker/detail.html', context)
 
 def detailf(request, track_id):

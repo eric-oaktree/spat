@@ -81,7 +81,7 @@ class TaskStatus(models.Model):
 class Task(models.Model):
     record = models.ForeignKey(Tracker)
     description = models.TextField()
-    due = models.DateField(null=True, blank=True)
+    due = models.DateField(null=True, blank=True, auto_now=True)
     status = models.ForeignKey(TaskStatus)
     def __str__(self):
-        return self.record.name + " " + self.description
+        return str(self.record.id) + " " + self.description
